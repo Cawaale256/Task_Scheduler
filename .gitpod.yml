@@ -3,7 +3,12 @@ image:
 tasks:
   - init: . ${GITPOD_REPO_ROOT}/.vscode/init_tasks.sh
     command: /home/gitpod/.pg_ctl/bin/pg_start > /dev/null
+  - init: npm install
+    command: npm start
   - command: . ${GITPOD_REPO_ROOT}/.vscode/uptime.sh &
+ports:
+  - port: 5000
+    onOpen: open-browser
 vscode:
   extensions:
     - ms-python.python
