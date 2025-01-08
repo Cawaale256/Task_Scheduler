@@ -1,10 +1,19 @@
 # Task Scheduler
 
 Task Scheduler is a web application that helps users manage their tasks efficiently. Users can create, edit, delete, and view tasks, categorize them, set priorities, and filter tasks based on various criteria. The application is designed to be mobile-responsive, ensuring that users can manage their tasks on the go.
-
+## Index – Table of Contents
+* [User Experience UX)](#User Experience UX) 
+* [Basic Features](#Basic Features)
+* [Advanced Features](#Advanced Features)
+* [Technologies Used](#technologies-used)
+* [Testing](#testing)
+* [Deployment](#deployment)
+* [Credits](#credits)
 ## Basic Features
 ![task-scheduler-wireframes](https://github.com/user-attachments/assets/a0db180d-b233-4eeb-a9c9-9d3e6aa18d09)
 
+## User Experience UX
+### User Stories :
 ### User Authentication and Authorization
 - **User Registration:** Users can create an account to access the task scheduler.
 - **User Login:** Users can log in to their account to manage their tasks.
@@ -68,11 +77,17 @@ Task Scheduler is a web application that helps users manage their tasks efficien
 - **Productivity Tools Integration:** Integration with other productivity tools (e.g., Trello, Asana) will be provided.
 - **API Endpoints:** API endpoints for third-party integrations will be available.
 
-## Getting Started
 
-### Prerequisites
+## Technologies Used
 - Node.js
 - MongoDB
 
+## testing
+
+## deployment
+
 ### Installation
    git clone https://github.com/Cawaale256/Task_Scheduler.git
+
+## credits:
+   
