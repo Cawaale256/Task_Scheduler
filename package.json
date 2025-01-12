@@ -1,0 +1,25 @@
+{
+  "name": "task_scheduler",
+  "version": "1.0.0",
+  "description": "Task Scheduler is a web application that helps users manage their tasks efficiently. Users can create, edit, delete, and view tasks, categorize them, set priorities, and filter tasks based on various criteria. The application is designed to be mobile-responsive, ensuring that users can manage their tasks on the go. ## Index – Table of Contents * [User Experience UX)](#User Experience UX)  * [Basic Features](#Basic Features) * [Advanced Features](#Advanced Features) * [Technologies Used](#technologies-used) * [Testing](#testing) * [Deployment](#deployment) * [Credits](#credits) ## Basic Features ![task-scheduler-wireframes](https://github.com/user-attachments/assets/a0db180d-b233-4eeb-a9c9-9d3e6aa18d09)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cawaale256/Task_Scheduler.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cawaale256/Task_Scheduler/issues"
+  },
+  "homepage": "https://github.com/Cawaale256/Task_Scheduler#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.4"
+  }
+}
