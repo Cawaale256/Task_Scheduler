@@ -23,7 +23,5 @@ const authMiddleware = (req, res, next) => {
         res.statusCode = 401;
         res.end(JSON.stringify({ msg: 'Token is not valid' }));
     }
-
     
-
 module.exports = authMiddleware;

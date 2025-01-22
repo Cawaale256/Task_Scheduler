@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const userSchema = new mongoose.userSchema ({
+const userSchema = new mongoose.Schema ({
     username: {
         type: String,
         required: true,
@@ -14,7 +14,7 @@ const userSchema = new mongoose.userSchema ({
     role: {
         type: String,
         enum: ['user', 'admin'],
-        default: user
+        default:'user'
     }
 });
 
@@ -27,6 +27,7 @@ userSchema.pre('save', async function(next) {
     this.password = await bcrypt.hash(this.password, salt);
     next();
 });
-
-const user=mongoose.model('user', 'userSchema');
-module.exports = user;
+// create the user model
+const User = mongoose.model('User', userSchema);
+// Export user model 
+module.exports = User;
