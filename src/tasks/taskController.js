@@ -6,9 +6,9 @@ const Task = require('./taskModel');
 
 //Create task:
 const createTask = async(taskData, res) => {
-    // Extract the necessary fields from taskData
-    const {title, description, dueDate, priority} = taskData;
+    
     try {
+        const {title, description, dueDate, priority} = taskData;
         // Extract the necessary fields from taskData
         const newTask = newTask ({
             title,
@@ -26,8 +26,37 @@ const createTask = async(taskData, res) => {
     }
 };
 
+// Reading
+const readTask = async(taskData, res) =>{
+    
+    try{
+        // If no specific criteria are provided, fetch all tasks
+        if (!query){
+            const tasks = awaits Task.find({});
+            return res.status(200).json({ message: 'All tasks fetched successfully', tasks });
+        } 
+            // Extract criteria from the query
+            const { title, description, dueDate, priority } = query;
+            
+            //  Build a search filter based on provided criteria
+            let searchFilter = {};
+            if (title) searchFilter.title = title;
+            if (description) searchFilter.description = description;
+            if (dueDate) searchFilter.dueDate = new Date(dueDate);
+            if (priority) searchFilter.priority = priority;
+            // Fetch tasks based on the search filter
+        const tasks = await Task.find(searchFilter);
+        res.status(200).json({ message: 'Tasks fetched successfully', tasks });
+    } catch(error) {
+        // Handle errors and send an appropriate response
+        res.status(500).json({ message: 'Error fetching tasks', error: error.message });
+    }
+};
+
 module.exports = {
     createTask
 };
 
-
+module.exports = {
+    readTask
+};
