@@ -6,5 +6,28 @@ const Task = require('./taskModel');
 
 //Create task:
 const createTask = async(taskData, res) => {
-    const {} = taskData
-}
+    // Extract the necessary fields from taskData
+    const {title, description, dueDate, priority} = taskData;
+    try {
+        // Extract the necessary fields from taskData
+        const newTask = newTask ({
+            title,
+            description,
+            dueDate,
+            priority
+        });
+        // Save the task to the database
+        await newTask.save();
+        // Send a success response
+        res.status(201).json({message: 'Task created successfully', task: newTask});
+    }catch (error) {
+        // Handle errors and send an appropriate response
+        res.status(500).json({ message: 'Error creating task', error: error.message });
+    }
+};
+
+module.exports = {
+    createTask
+};
+
+
