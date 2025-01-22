@@ -3,7 +3,6 @@
 //  (e.g., title, description, due date, priority, etc.) and export the task model
 
 const mongoose = require('mongoose');
-const { schema } = require('../auth/userModel');
 
 const taskSchema = new mongoose.Schema ({
     title:{
