@@ -2,7 +2,7 @@ const User = require('./userModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
-const user = require('./userModel');
+// const user = require('./userModel');
 
 // Register a new user
 // Define an asynchronous function named registerUser that takes userData and res as parameters

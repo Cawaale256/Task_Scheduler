@@ -5,7 +5,7 @@
 const mongoose = require('mongoose');
 const { schema } = require('../auth/userModel');
 
-const taskSchema = new mongoose Schema ({
+const taskSchema = new mongoose.Schema ({
     title:{
         type: String,
         required: true
@@ -17,7 +17,7 @@ const taskSchema = new mongoose Schema ({
     },
 
     dueDate:{
-        type:Date,
+        type: Date,
         required: true
 
     },
@@ -31,5 +31,5 @@ const taskSchema = new mongoose Schema ({
 // Create the model for tasks
  const Task = mongoose.model(Task,taskSchema);
 // Export Task model
-module.export = Task; 
+module.exports = Task; 
 
