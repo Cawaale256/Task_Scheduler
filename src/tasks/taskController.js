@@ -2,6 +2,7 @@
 // Contents: Define functions to handle creating, reading, updating, and deleting tasks.
 // These functions should interact with the task model.
 
+const { query } = require('express');
 const Task = require('./taskModel');
 
 //Create task:
@@ -28,8 +29,7 @@ const createTask = async(taskData, res) => {
 
 // Reading
 const readTask = async(taskData, res) =>{
-    
-    try{
+        try{
         // If no specific criteria are provided, fetch all tasks
         if (!query){
             const tasks = awaits Task.find({});
@@ -53,10 +53,34 @@ const readTask = async(taskData, res) =>{
     }
 };
 
-module.exports = {
-    createTask
-};
+// Update task
+const updateTask = async (req, res) => {
+    const { id } = req.params; // Extract task id from request parameters
+    const updates = req.body; // Extract updates from request body
+  
+    try {
+      const task = await Task.findById(id);
+      if (!task) {
+        return res.status(404).json({ message: 'Task not found' });
+      }
+  
+      // Update the task with new values
+      Object.keys(updates).forEach((key) => {
+        task[key] = updates[key];
+      });
+  
+      await task.save();
+      res.status(200).json({ message: 'Task updated successfully', task });
+    } catch (error) {
+      // Handle errors and send an appropriate response
+      res.status(500).json({ message: 'Error updating task', error: error.message });
+    }
+  };
+
 
 module.exports = {
-    readTask
+    createTask,
+    readTask,
+    updateTask
 };
+
