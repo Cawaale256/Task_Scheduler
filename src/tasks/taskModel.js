@@ -29,5 +29,5 @@ const taskSchema = new mongoose.Schema ({
 
 // Create the model for tasks
  const Task = mongoose.model('Task',taskSchema);
-// Export Task model
+// Export Task model 
 module.exports = Task; 
