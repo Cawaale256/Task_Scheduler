@@ -45,6 +45,7 @@ const deleteTask = async(id)=>{
     if (!task){
         throw new Error('Task not found');
     }
+    // Delete the task by its ID
     return await Task.findByIdAndDelete(id);
 };
 

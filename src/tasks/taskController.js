@@ -2,7 +2,7 @@
 // Contents: Define functions to handle creating, reading, updating, and deleting tasks.
 // These functions should interact with the task model.
 
-const { query } = require('express');
+// const { query } = require('express');
 const Task = require('./taskModel');
 
 //Create task:
