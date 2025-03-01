@@ -28,7 +28,7 @@ const readTask = async(criteria = {}) => {
 }
 
 // Update an existing task by ID
-const updateTask = async(IdleDeadline, updates)=>{
+const updateTask = async(id, updates)=>{
     const task = await Task.findById(id);
     if (!task) {
         throw new Error('Task not found');
@@ -38,3 +38,19 @@ const updateTask = async(IdleDeadline, updates)=>{
     });
     return await task.save();
 }
+
+// Delete a task by ID
+const deleteTask = async(id)=>{
+    const task = await Task.findById(id);
+    if (!task){
+        throw new Error('Task not found');
+    }
+    return await Task.findByIdAndDelete(id);
+};
+
+module.exports = {
+    createTask,
+    readTasks,
+    updateTask,
+    deleteTask
+};
