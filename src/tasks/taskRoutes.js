@@ -1,38 +1,42 @@
 const http = require('http');
 const { createTask, readTask, updateTask, deleteTask } = require('./taskController');
+const authMiddleware = require('./authMiddleware');
 
 // Create an HTTP server that handles incoming requests and responses
 const server = http.createServer((req, res) => {
-    // Check if the request is a POST request to the /api/tasks URL
     if (req.method === 'POST' && req.url === '/api/tasks') {
-        let body = '';
-        req.on('data', chunk => {
-            body += chunk.toString();
+        authMiddleware(['user', 'admin'])(req, res, () => {
+            let body = '';
+            req.on('data', chunk => {
+                body += chunk.toString();
+            });
+            req.on('end', () => {
+                const taskData = JSON.parse(body);
+                createTask(taskData, res);
+            });
         });
-        req.on('end', () => {
-            const taskData = JSON.parse(body);
-            createTask(taskData, res);
-        });
-    // Check if the request is a GET request to the /api/tasks URL
     } else if (req.method === 'GET' && req.url === '/api/tasks') {
-        readTask(req, res);
-    // Check if the request is a PUT request to the /api/tasks/:id URL
+        authMiddleware(['user', 'admin'])(req, res, () => {
+            readTask(req, res);
+        });
     } else if (req.method === 'PUT' && req.url.startsWith('/api/tasks/')) {
-        const id = req.url.split('/').pop();
-        let body = '';
-        req.on('data', chunk => {
-            body += chunk.toString();
+        authMiddleware(['user', 'admin'])(req, res, () => {
+            const id = req.url.split('/').pop();
+            let body = '';
+            req.on('data', chunk => {
+                body += chunk.toString();
+            });
+            req.on('end', () => {
+                const updates = JSON.parse(body);
+                updateTask({ params: { id }, body: updates }, res);
+            });
         });
-        req.on('end', () => {
-            const updates = JSON.parse(body);
-            updateTask({ params: { id }, body: updates }, res);
-        });
-    // Check if the request is a DELETE request to the /api/tasks/:id URL
     } else if (req.method === 'DELETE' && req.url.startsWith('/api/tasks/')) {
-        const id = req.url.split('/').pop();
-        deleteTask({ params: { id } }, res);
+        authMiddleware(['admin'])(req, res, () => {
+            const id = req.url.split('/').pop();
+            deleteTask({ params: { id } }, res);
+        });
     } else {
-        // If the route is not found, return a 404 status code
         res.statusCode = 404;
         res.end('Not found');
     }
@@ -47,3 +51,4 @@ server.listen(PORT, () => {
 });
 
 module.exports = server;
+
